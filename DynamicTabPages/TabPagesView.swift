@@ -1,13 +1,13 @@
 //
 //  ContentView.swift
-//  DynamicTabPages
+//  TabPagesView
 //
 //  Created by Adrien Surugue on 02/04/2023.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct TabPagesView: View {
     
     @State private var tabs = tabPages
     @State private var currentTab = tabPages.first!
@@ -202,8 +202,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct TabPagesView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        TabPagesView()
     }
 }

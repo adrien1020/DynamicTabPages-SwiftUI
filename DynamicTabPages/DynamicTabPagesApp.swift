@@ -11,7 +11,7 @@ import SwiftUI
 struct DynamicTabPagesApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabPagesView()
         }
     }
 }

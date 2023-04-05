@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F499E1D29DABA7D006F1EEF /* LinearInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F499E1C29DABA7D006F1EEF /* LinearInterpolation.swift */; };
 		9FCC844E29D9C55E00176802 /* DynamicTabPagesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCC844D29D9C55E00176802 /* DynamicTabPagesApp.swift */; };
-		9FCC845029D9C55E00176802 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCC844F29D9C55E00176802 /* ContentView.swift */; };
+		9FCC845029D9C55E00176802 /* TabPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCC844F29D9C55E00176802 /* TabPagesView.swift */; };
 		9FCC845229D9C55F00176802 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FCC845129D9C55F00176802 /* Assets.xcassets */; };
 		9FCC845629D9C55F00176802 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FCC845529D9C55F00176802 /* Preview Assets.xcassets */; };
+		9FCC845D29D9C57700176802 /* TabPagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCC845C29D9C57700176802 /* TabPagesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F499E1C29DABA7D006F1EEF /* LinearInterpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearInterpolation.swift; sourceTree = "<group>"; };
 		9FCC844A29D9C55E00176802 /* DynamicTabPages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicTabPages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FCC844D29D9C55E00176802 /* DynamicTabPagesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTabPagesApp.swift; sourceTree = "<group>"; };
-		9FCC844F29D9C55E00176802 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9FCC844F29D9C55E00176802 /* TabPagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPagesView.swift; sourceTree = "<group>"; };
 		9FCC845129D9C55F00176802 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FCC845329D9C55F00176802 /* DynamicTabPages.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DynamicTabPages.entitlements; sourceTree = "<group>"; };
 		9FCC845529D9C55F00176802 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9FCC845C29D9C57700176802 /* TabPagesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabPagesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +57,10 @@
 			isa = PBXGroup;
 			children = (
 				9FCC844D29D9C55E00176802 /* DynamicTabPagesApp.swift */,
-				9FCC844F29D9C55E00176802 /* ContentView.swift */,
+				9FCC844F29D9C55E00176802 /* TabPagesView.swift */,
+				9FCC845C29D9C57700176802 /* TabPagesModel.swift */,
 				9FCC845129D9C55F00176802 /* Assets.xcassets */,
+				9F499E1C29DABA7D006F1EEF /* LinearInterpolation.swift */,
 				9FCC845329D9C55F00176802 /* DynamicTabPages.entitlements */,
 				9FCC845429D9C55F00176802 /* Preview Content */,
 			);
@@ -139,8 +145,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FCC845029D9C55E00176802 /* ContentView.swift in Sources */,
+				9FCC845029D9C55E00176802 /* TabPagesView.swift in Sources */,
 				9FCC844E29D9C55E00176802 /* DynamicTabPagesApp.swift in Sources */,
+				9FCC845D29D9C57700176802 /* TabPagesModel.swift in Sources */,
+				9F499E1D29DABA7D006F1EEF /* LinearInterpolation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,8 +285,7 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -315,8 +322,7 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";

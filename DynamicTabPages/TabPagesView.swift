@@ -26,83 +26,7 @@ struct TabPagesView: View {
                     TabButtons(screenSize: screenSize)
                     
                     //MARK: - TabView
-                    TabView(selection:$currentTab){
-                        
-                        //MARK: - View 1
-                        Color.red
-                            .ignoresSafeArea()
-                            .overlay(
-                                GeometryReader{ proxy in
-                                    Color.clear
-                                        .onChange(of: proxy.frame(in: .global), perform: { value in
-                                            if currentTab.name == tabs[0].name{
-                                                index = 0
-                                                offset = value.minX - (screenSize.width * CGFloat(index))
-                                                //print("DEBUG: Global Offset=\(offset)")
-                                            }
-                                            scrollTarget = index
-                                            updateTabFrame(value.width)
-                                        })
-                                })
-                            .tag(tabs[0])
-                        
-                        //MARK: - View 2
-                        Color.blue
-                            .ignoresSafeArea()
-                            .overlay(
-                                GeometryReader{ proxy in
-                                    Color.clear
-                                        .onChange(of: proxy.frame(in: .global), perform: { value in
-                                            if currentTab.name == tabs[1].name{
-                                                index = 1
-                                                offset = value.minX - (screenSize.width * CGFloat(index))
-                                                //print("DEBUG: Global Offset=\(offset)")
-                                            }
-                                            scrollTarget = index
-                                            updateTabFrame(value.width)
-                                        })
-                                })
-                            .tag(tabs[1])
-                        
-                        //MARK: - View 3
-                        Color.yellow
-                            .ignoresSafeArea()
-                            .overlay(
-                                GeometryReader{ proxy in
-                                    Color.clear
-                                        .onChange(of: proxy.frame(in: .global), perform: { value in
-                                            if currentTab.name == tabs[2].name{
-                                                index = 2
-                                                offset = value.minX - (screenSize.width * CGFloat(index))
-                                                //print("DEBUG: Global Offset=\(offset)")
-                                            }
-                                            scrollTarget = index
-                                            updateTabFrame(value.width)
-                                        })
-                                }
-                            )
-                            .tag(tabs[2])
-                        
-                        //MARK: - View 4
-                        Color.green
-                            .ignoresSafeArea()
-                            .overlay(
-                                GeometryReader{ proxy in
-                                    Color.clear
-                                        .onChange(of: proxy.frame(in: .global), perform: { value in
-                                            if currentTab.name == tabs[3].name{
-                                                index = 3
-                                                offset = value.minX - (screenSize.width * CGFloat(index))
-                                                //print("DEBUG: Global Offset=\(offset)")
-                                            }
-                                            scrollTarget = index
-                                            updateTabFrame(value.width)
-                                        })
-                                })
-                            .tag(tabs[3])
-                    }
-                    .tabViewStyle(.page(indexDisplayMode: .never))
-                    .ignoresSafeArea()
+                    tabContentViews(screenSize: screenSize)
                 }
                 .ignoresSafeArea(.all, edges: .bottom)
                 .frame(width: screenSize.width, height: screenSize.height)
@@ -115,61 +39,95 @@ struct TabPagesView: View {
     }
     
     //MARK: - TabButtons
+    // ml修改：支持iOS 14及以上
     @ViewBuilder
-    func TabButtons(screenSize: CGSize) -> some View{
-        ScrollViewReader{ scrollView in
-            ScrollView(.horizontal, showsIndicators: false){
-                HStack(spacing: 20){
-                    ForEach($tabs){ $tab in
-                        HStack(spacing: 4){
-                            Image(systemName: tab.icon)
-                            Text(tab.name)
-                        }
-                        .id(tab.id)
-                        .onTapGesture {
-                            withAnimation(.easeOut){
-                                currentTab = tab
-                                if currentTab.name == tabs[0].name{
-                                    index = 0
-                                } else if currentTab.name == tabs[1].name{
-                                    index = 1
-                                } else if currentTab.name == tabs[2].name{
-                                    index = 2
-                                } else if currentTab.name == tabs[3].name{
-                                    index = 3
-                                }
-                                updateTabFrame(screenSize.width)
-                            }
-                        }
-                        .overlay(
-                            GeometryReader{ proxy in
-                                Color.clear
-                                    .onAppear(){
-                                        tab.width = proxy.frame(in: .global).width
-                                        tab.minX = proxy.frame(in: .global).minX
-                                        updateTabFrame(screenSize.width)
-                                    }
-                            }
-                        )
-                        .id(tab.id)
+    func TabButtons(screenSize: CGSize) -> some View {
+        ScrollViewReader { scrollView in
+            ScrollView(.horizontal, showsIndicators: false) {
+                ZStack(alignment: .bottomLeading) { // 使用 ZStack 替代 overlay
+                    HStack(spacing: 20) {
+                        tabBarInfoViews(screenSize: screenSize)
                     }
-                }
-                .padding(.horizontal)
-                .overlay(alignment: .bottomLeading, content: {
+                    .padding(.horizontal)
+                    
                     Capsule()
-                        .frame(width:indicatorWidth  ,height: 4)
-                        .offset(x:indicatorPosition,y: 10)
-                })
+                        .frame(width: indicatorWidth, height: 4)
+                        .offset(x: indicatorPosition, y: 10)
+                }
                 .padding(.top, 10)
                 .padding(.bottom, 10)
             }
             .onChange(of: scrollTarget, perform: { _ in
-                withAnimation(.linear){
-                    if let index = scrollTarget{
+                withAnimation(.linear) {
+                    if let index = scrollTarget {
                         scrollView.scrollTo(tabs[index].id, anchor: .center)
                     }
                 }
             })
+        }
+    }
+
+    // 支持iOS 15及以上
+//    @ViewBuilder
+//    func TabButtons(screenSize: CGSize) -> some View{
+//        ScrollViewReader{ scrollView in
+//            ScrollView(.horizontal, showsIndicators: false){
+//                HStack(spacing: 20){
+//                    tabBarInfoViews(screenSize: screenSize)
+//                }
+//                .padding(.horizontal)
+//                .overlay(alignment: .bottomLeading, content: {
+//                    Capsule()
+//                        .frame(width:indicatorWidth  ,height: 4)
+//                        .offset(x:indicatorPosition,y: 10)
+//                })
+//                .padding(.top, 10)
+//                .padding(.bottom, 10)
+//            }
+//            .onChange(of: scrollTarget, perform: { _ in
+//                withAnimation(.linear){
+//                    if let index = scrollTarget{
+//                        scrollView.scrollTo(tabs[index].id, anchor: .center)
+//                    }
+//                }
+//            })
+//        }
+//    }
+    
+    @ViewBuilder
+    func tabBarInfoViews(screenSize: CGSize) -> some View {
+        ForEach($tabs){ $tab in
+            HStack(spacing: 4){
+                Image(systemName: tab.icon)
+                Text(tab.name)
+            }
+            .id(tab.id)
+            .onTapGesture {
+                withAnimation(.easeOut){
+                    currentTab = tab
+                    if currentTab.name == tabs[0].name{
+                        index = 0
+                    } else if currentTab.name == tabs[1].name{
+                        index = 1
+                    } else if currentTab.name == tabs[2].name{
+                        index = 2
+                    } else if currentTab.name == tabs[3].name{
+                        index = 3
+                    }
+                    updateTabFrame(screenSize.width)
+                }
+            }
+            .overlay(
+                GeometryReader{ proxy in
+                    Color.clear
+                        .onAppear(){
+                            tab.width = proxy.frame(in: .global).width
+                            tab.minX = proxy.frame(in: .global).minX
+                            updateTabFrame(screenSize.width)
+                        }
+                }
+            )
+            .id(tab.id)
         }
     }
     
@@ -199,6 +157,106 @@ struct TabPagesView: View {
         indicatorPosition = positionInterpolation.calculate(for: -offset)
         //print("Indicator Width = \(indicatorWidth)")
         //print("Indicator Position = \(indicatorPosition)")
+    }
+    
+    
+    @ViewBuilder
+    func tabContentViews(screenSize: CGSize) -> some View {
+        TabView(selection:$currentTab){
+            
+            //MARK: - View 1
+            Color.red
+                .ignoresSafeArea()
+                .overlay(
+                    GeometryReader{ proxy in
+                        Color.clear
+                            .onChange(of: proxy.frame(in: .global), perform: { value in
+                                if currentTab.name == tabs[0].name{
+                                    index = 0
+                                    offset = value.minX - (screenSize.width * CGFloat(index))
+                                    //print("DEBUG: Global Offset=\(offset)")
+                                }
+                                scrollTarget = index
+                                updateTabFrame(value.width)
+                            })
+                    })
+                .tag(tabs[0])
+            
+            //MARK: - View 2
+            Color.blue
+                .ignoresSafeArea()
+                .overlay(
+                    GeometryReader{ proxy in
+                        Color.clear
+                            .onChange(of: proxy.frame(in: .global), perform: { value in
+                                if currentTab.name == tabs[1].name{
+                                    index = 1
+                                    offset = value.minX - (screenSize.width * CGFloat(index))
+                                    //print("DEBUG: Global Offset=\(offset)")
+                                }
+                                scrollTarget = index
+                                updateTabFrame(value.width)
+                            })
+                    })
+                .tag(tabs[1])
+            
+            //MARK: - View 3
+            Color.yellow
+                .ignoresSafeArea()
+                .overlay(
+                    GeometryReader{ proxy in
+                        Color.clear
+                            .onChange(of: proxy.frame(in: .global), perform: { value in
+                                if currentTab.name == tabs[2].name{
+                                    index = 2
+                                    offset = value.minX - (screenSize.width * CGFloat(index))
+                                    //print("DEBUG: Global Offset=\(offset)")
+                                }
+                                scrollTarget = index
+                                updateTabFrame(value.width)
+                            })
+                    }
+                )
+                .tag(tabs[2])
+            
+            //MARK: - View 4
+            Color.green
+                .ignoresSafeArea()
+                .overlay(
+                    GeometryReader{ proxy in
+                        Color.clear
+                            .onChange(of: proxy.frame(in: .global), perform: { value in
+                                if currentTab.name == tabs[3].name{
+                                    index = 3
+                                    offset = value.minX - (screenSize.width * CGFloat(index))
+                                    //print("DEBUG: Global Offset=\(offset)")
+                                }
+                                scrollTarget = index
+                                updateTabFrame(value.width)
+                            })
+                    })
+                .tag(tabs[3])
+            
+            //MARK: - View 5
+            Color.yellow
+                .ignoresSafeArea()
+                .overlay(
+                    GeometryReader{ proxy in
+                        Color.clear
+                            .onChange(of: proxy.frame(in: .global), perform: { value in
+                                if currentTab.name == tabs[4].name{
+                                    index = 4
+                                    offset = value.minX - (screenSize.width * CGFloat(index))
+                                    //print("DEBUG: Global Offset=\(offset)")
+                                }
+                                scrollTarget = index
+                                updateTabFrame(value.width)
+                            })
+                    })
+                .tag(tabs[4])
+        }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .ignoresSafeArea()
     }
 }
 

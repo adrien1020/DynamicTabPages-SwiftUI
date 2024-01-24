@@ -19,5 +19,6 @@ struct TabPagesModel: Identifiable, Hashable{
 var tabPages: [TabPagesModel] = [.init(name: "Principal", icon: "circle.grid.2x2"),
                                 .init(name: "Catégories", icon: "folder"),
                                 .init(name: "Favoris", icon: "heart.fill"),
-                                .init(name: "Ventes", icon: "doc.plaintext.fill")
+                                .init(name: "Ventes", icon: "doc.plaintext.fill"),
+                                .init(name: "Principal", icon: "circle.grid.2x2"),
 ]

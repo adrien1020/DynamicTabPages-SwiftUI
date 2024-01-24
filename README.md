@@ -1,5 +1,11 @@
 # Dynamic Tab Pages
 
+源码来自，感谢[adrien1020
+Adrien](https://github.com/adrien1020/DynamicTabPages-SwiftUI)分享
+
+### SwiftUI滚动框架，修改以适配**iOS14**。
+
+
 This iOS application is an example implementation of dynamic tabs with SwiftUI. The UI includes a tab view at the top, with four tabs showcasing different colors. As the user scrolls horizontally through the tabs, a line indicator moves to track the currently selected tab.<br>
 
 ![alt text](https://res.cloudinary.com/dhdgnx4mc/image/upload/v1680684757/media/GitHub/dfokhzxqfxl4ieynj93c.gif)

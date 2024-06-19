@@ -2,7 +2,7 @@
 
 This iOS application is an example implementation of dynamic tabs with SwiftUI. The UI includes a tab view at the top, with four tabs showcasing different colors. As the user scrolls horizontally through the tabs, a line indicator moves to track the currently selected tab.<br>
 
-<a href="https://www.buymeacoffee.com/adr1020" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+<a href="https://www.buymeacoffee.com/adr1021" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 
 ![alt text](https://res.cloudinary.com/dhdgnx4mc/image/upload/v1680684757/media/GitHub/dfokhzxqfxl4ieynj93c.gif)
